@@ -1,5 +1,6 @@
 package com.restaurant.restaurant.service;
 
+import com.restaurant.restaurant.models.Dish;
 import com.restaurant.restaurant.models.Restaurant;
 import com.restaurant.restaurant.models.Vote;
 import com.restaurant.restaurant.repositories.RestaurantRepository;
@@ -64,5 +65,11 @@ public class RestaurantServiceImpl implements RestaurantService{
     @Override
     public Restaurant getByVoteId(Integer voteId) {
         return repository.getRestaurantByVoteListContaining(voteRepository.getById(voteId));
+    }
+    @Override
+    public void updateMenu(List<Dish> newMenu,Integer restaurantId){
+        Restaurant restaurant = repository.getById(restaurantId);
+        restaurant.setMenu(newMenu);
+        repository.saveAndFlush(restaurant);
     }
 }

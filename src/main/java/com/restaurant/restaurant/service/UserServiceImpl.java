@@ -2,13 +2,11 @@ package com.restaurant.restaurant.service;
 
 import com.restaurant.restaurant.models.Role;
 import com.restaurant.restaurant.models.User;
+import com.restaurant.restaurant.repositories.RestaurantRepository;
 import com.restaurant.restaurant.repositories.RoleRepository;
 import com.restaurant.restaurant.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.BeanDefinitionDsl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,10 +19,13 @@ public class UserServiceImpl implements UserService{
     BCryptPasswordEncoder bCryptPasswordEncoder;
     final RoleRepository roleRepository;
 
-    public UserServiceImpl(UserRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder,RoleRepository roleRepository) {
+    final RestaurantRepository restaurantRepository;
+
+    public UserServiceImpl(UserRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder, RoleRepository roleRepository, RestaurantRepository restaurantRepository) {
         this.repository = repository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.roleRepository = roleRepository;
+        this.restaurantRepository = restaurantRepository;
     }
 
     @Override
@@ -63,7 +64,6 @@ public class UserServiceImpl implements UserService{
     public void delete(Integer id) {
         repository.delete(repository.getById(id));
     }
-
     @Override
     public User update(Integer id, User newUser) {
         User oldUser = repository.getById(id);

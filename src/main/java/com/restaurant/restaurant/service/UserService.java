@@ -1,5 +1,6 @@
 package com.restaurant.restaurant.service;
 
+import com.restaurant.restaurant.models.Restaurant;
 import com.restaurant.restaurant.models.Role;
 import com.restaurant.restaurant.models.User;
 
@@ -15,4 +16,5 @@ public interface UserService {
     void delete(User user);
     void delete(Integer id);
     User update(Integer id,User newUser);
+
 }

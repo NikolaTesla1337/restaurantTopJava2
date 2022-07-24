@@ -1,5 +1,6 @@
 package com.restaurant.restaurant.service;
 
+import com.restaurant.restaurant.models.Dish;
 import com.restaurant.restaurant.models.Restaurant;
 import com.restaurant.restaurant.models.Vote;
 
@@ -14,6 +15,7 @@ public interface RestaurantService {
     Restaurant update(Integer id,Restaurant newRestaurant);
     Restaurant getByVote (Vote vote);
     Restaurant getByVoteId (Integer voteId);
+    void updateMenu(List<Dish> newMenu,Integer restaurantId);
 
 
 
